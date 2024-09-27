@@ -6,7 +6,7 @@ public class Dienthoaixachtay extends Dienthoai {
 
     // Constructor
     public Dienthoaixachtay(int id, String tenDienThoai, double giaBan, int soLuong, String nhaSanXuat, String quocGiaXachTay, String trangThai) {
-        super(id, tenDienThoai, giaBan, soLuong, nhaSanXuat);
+        super(String.valueOf(id), tenDienThoai, giaBan, soLuong, nhaSanXuat);
         this.quocGiaXachTay = quocGiaXachTay;
         this.trangThai = trangThai;
     }

@@ -1,27 +1,23 @@
 package Test_module2.controler;
 
-import Case_Study_Module2.Write.WriteFile;
 import Test_module2.model.Dienthoai;
 import Test_module2.model.Dienthoaichinhhang;
 import Test_module2.model.Dienthoaixachtay;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Managment {
     private static List<Dienthoai> mobiles = new ArrayList<>();
     private static int nextId = 1;
     public static void addMobile(Dienthoai mb) {
-
         mb.id = nextId++;
         mobiles.add(mb);
     }
 
-    public static void removeMobile(int id) throws Exception {
+    public static void remove(int id) throws Exception {
         for (Dienthoai mobile : mobiles) {
             if (mobile.getId() == id) {
                 mobiles.remove(mobile);
@@ -31,23 +27,16 @@ public class Managment {
         throw new Exception("Không tìm thấy điện thoại với ID " + id);
     }
 
-    public static void find() {
-        System.out.println("ID\tTên điện thoại\tGiá bán\tSố lượng\tNhà sản xuất");
-        for (Dienthoai mobile : mobiles) {
-            System.out.println(mobile.getId() + "\t" + mobile.getDetails());
-        }
-    }
-
-    public Object findMobile(int id) {
+    public static Dienthoai find(int id) {
         for (Dienthoai mobile : mobiles) {
             if (mobile.getId() == id) {
                 return mobile;
             }
         }
+
         return null;
     }
-
-    public void saveToCSV(String filePath) {
+    public static void save(String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Dienthoai mobile : mobiles) {
                 writer.write(mobile.getDetails().replace(", ", ","));
@@ -58,7 +47,7 @@ public class Managment {
         }
     }
 
-    public void loadFromCSV(String filePath) {
+    public void writeTofile(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -94,6 +83,10 @@ public class Managment {
         for (Dienthoai mobile : mobiles) {
             System.out.println(mobile.getDetails());
         }
+    }
+    public static void Exit(){
+        System.exit(0);
+        System.out.println("Đã thoát chương trình");
     }
 
     }

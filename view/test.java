@@ -1,16 +1,13 @@
 package Test_module2.view;
-
-
 import Test_module2.controler.Managment;
+import Test_module2.model.Dienthoai;
 import Test_module2.model.Dienthoaichinhhang;
 import Test_module2.model.Dienthoaixachtay;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class test {
     public static void main(String[] args) {
         Managment management = new Managment();
@@ -20,20 +17,21 @@ public class test {
                     "1. Thêm mới:\n" +
                     "2. xóa :\n" +
                     "3.Xem danh sách  :  \n" +
-                    "4.tìm kiếm");
+                    "4.Tìm kiếm  :  \n" +
+                    "5.LƯU FILE  :  \n" +
+                    "6.THOÁT");
             int n = new Scanner(System.in).nextInt();
             switch (n) {
                 case 1:
                     System.out.print("Nhập tên điện thoại: ");
                     String name = scanner.nextLine();
-
-                    double price = 0;
+                    double price= 0;
                     boolean validPrice = false;
                     while (!validPrice) {
                         try {
                             System.out.print("Nhập giá: ");
-                            price = scanner.nextDouble();
-                            if (price < 0) {
+                            price= scanner.nextDouble();
+                            if (n< 0) {
                                 System.out.println("Giá không thể âm. Vui lòng nhập lại.");
                             } else {
                                 validPrice = true;
@@ -43,7 +41,6 @@ public class test {
                             scanner.nextLine();
                         }
                     }
-
                     int quantity = 0;
                     boolean validQuantity = false;
                     while (!validQuantity) {
@@ -112,11 +109,11 @@ public class test {
                     }
                     break;
                 case 2:
-                    System.out.print("Nhập ID điện thoại cần xóa: ");
-                    int idToRemove = scanner.nextInt();
+                    System.out.print("Nhập mã ID điện thoại cần xóa: ");
+                    int idremove= scanner.nextInt();
                     try {
-                        Managment.removeMobile(idToRemove);
-                        System.out.println("Đã xóa điện thoại với ID: " + idToRemove);
+                        Managment.remove(idremove);
+                        System.out.println("Đã xóa điện thoại với ID: " + idremove);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -124,9 +121,24 @@ public class test {
                 case 3:
                     Managment.display();
                     break;
-                case 8:
-                    Managment.find();
-
+                case 4:
+                    System.out.print("Nhập ID điện thoại cần tìm: ");
+                    int idFind = scanner.nextInt();
+                    Dienthoai foundMobile = Managment.find(idFind);
+                    if (foundMobile != null) {
+                        System.out.println("Tìm thấy: " + foundMobile.getId());
+                    } else {
+                        System.out.println("Không tìm thấy điện thoại với ID " + idFind);
+                    }
+                    break;
+                case 5:
+                    String filePath="src/Test_module2/data/data/mobiles.csv ";
+                    Managment.save(filePath);
+                    System.out.println("Đã lưu file thành công.");
+                    break;
+                case 6:
+                    Managment.Exit();
+                    break;
                 default:
                     System.out.println("Nhập Sai Số!");
             }

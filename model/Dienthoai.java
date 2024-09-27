@@ -2,7 +2,7 @@ package Test_module2.model;
 
 public  abstract class Dienthoai {
         public int id;
-        protected String ten;
+        protected String tenDienThoai;
         protected double gia;
         protected int soLuong;
         protected String nhaSanXuat;
@@ -10,10 +10,9 @@ public  abstract class Dienthoai {
     public Dienthoai(String id, String tenDienThoai, double giaBan, int soLuong, String nhaSanXuat) {
     }
 
-
     public void DienThoai(int id, String ten, double gia, int soLuong, String nhaSanXuat) {
             this.id = id;
-            this.ten = ten;
+            this.tenDienThoai = tenDienThoai;
             this.gia = gia;
             this.soLuong = soLuong;
             this.nhaSanXuat = nhaSanXuat;
@@ -27,7 +26,7 @@ public  abstract class Dienthoai {
 
         @Override
         public String toString() {
-            return "ID: " + id + ", Tên: " + ten + ", Giá: " + gia + ", Số lượng: " + soLuong + ", Nhà sản xuất: " + nhaSanXuat;
+            return "ID: " + id + ", Tên: " + tenDienThoai + ", Giá: " + gia + ", Số lượng: " + soLuong + ", Nhà sản xuất: " + nhaSanXuat;
         }
     }
 
